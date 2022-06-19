@@ -1,0 +1,35 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+  pull_request:
+    paths-ignore:
+      - "README.md"
+jobs:
+  test-builds:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test:
+          - simple
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build local docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile
+      - name: Test ${{ matrix.test }} Project
+        uses: ./
+        with:
+          source: ./test_projects/${{ matrix.test }}
+          destination: ./test_projects/${{ matrix.test }}/_site
+
+      - name: Verify output
+        run: |
+          ./bin/compare_expected_output ./test_projects/${{matrix.test}}

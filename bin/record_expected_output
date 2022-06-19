@@ -1,0 +1,11 @@
+#! /usr/bin/env sh
+
+for dir in $(ls test_projects)
+do
+        cd test_projects/$dir
+        rm -rf _expected
+	bundle install
+        bundle exec nanoc
+        mv output _expected
+done
+
