@@ -6,16 +6,15 @@ require "shellwords"
 project_path = ARGV[0]
 
 Dir.chdir(project_path)
-puts Dir['**/*.*']
 
 expected_files = Dir["_expected/**/*"].select { |path| File.file?(path) }.map { |path| Pathname.new(path).relative_path_from("_expected").to_s }
-actual_files = Dir["_site/**/*"].select { |path| File.file?(path) }.map { |path| Pathname.new(path).relative_path_from("_site").to_s }
+actual_files = Dir["output/**/*"].select { |path| File.file?(path) }.map { |path| Pathname.new(path).relative_path_from("output").to_s }
 
 differences = []
 
 expected_files.each do |expected_file|
   if actual_files.include?(expected_file)
-    diff = `diff #{Shellwords.escape(File.join("_expected", expected_file))} #{Shellwords.escape(File.join("_site", expected_file))}`
+    diff = `diff #{Shellwords.escape(File.join("_expected", expected_file))} #{Shellwords.escape(File.join("output", expected_file))}`
     if !$?.success?
       differences << "Expected output of #{expected_file} differs:\n#{diff}"
     end

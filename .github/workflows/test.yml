@@ -28,7 +28,6 @@ jobs:
         uses: ./
         with:
           source: ./test_projects/${{ matrix.test }}
-          destination: ./test_projects/${{ matrix.test }}/_site
 
       - name: Verify output
         run: |

@@ -8,14 +8,6 @@ inputs:
     description: 'Directory where the source files reside.'
     required: false
     default: ./
-  destination:
-    description: 'Output directory of the build. Although it can be nested inside the source, it cannot be the same as the source directory.'
-    required: false
-    default: ./_site
-  project_nanoc_output_dir:
-    description: "The configured output directory of the Nanoc project. Defaults to 'output'"
-    required: false
-    default: output
   verbose:
     description: 'Verbose output'
     required: false
