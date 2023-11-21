@@ -4,7 +4,7 @@ A simple GitHub Action for producing Nanoc build artifacts compatible with GitHu
 
 # Scope
 
-This is used along with [`actions/deploy-pages`](https://github.com/actions/deploy-pages) to use Github's support for building Pages with Actions (currently in public beta for public repositories).
+This is used along with [`actions/deploy-pages`](https://github.com/actions/deploy-pages) to use Github's support for building Pages with Actions.
 
 # Usage
 
